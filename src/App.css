@@ -1,0 +1,50 @@
+.main-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 2em;
+    margin: 1em;
+    background-color: lavender;
+}
+.counter {
+    font-size: 15em;
+    color: purple;
+}
+.counter-red {
+    font-size: 15em;
+    color: red;
+}
+
+.buttons {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    border: 2px solid black;
+    border-radius: 1em;
+    margin: 1em;
+    padding: 1em;
+    /*gap: 2em*/
+}
