@@ -1,5 +1,5 @@
 ## Simple counter.
 
-### React - TypeScrypt
+### React - TypeScript
 
 **You can change min and max value and enjoy counter magic**
