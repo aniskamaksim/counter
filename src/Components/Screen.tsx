@@ -2,14 +2,15 @@ import React from 'react';
 
 type ScreenType = {
     counter: number
-    maxvalue: number;
+    maxValue: number;
 }
 export const Screen: React.FC<ScreenType> = (
-    {counter, maxvalue}
+    {counter, maxValue}
 ) => {
+    const counterLimit = counter === maxValue;
     return (
         <div className={'screen'}>
-            <div className={counter === maxvalue ? 'counter-red' : 'counter'}>{counter}</div>
+            <div className={counterLimit ? 'counter_red' : 'counter'}>{counter}</div>
         </div>
     );
 };

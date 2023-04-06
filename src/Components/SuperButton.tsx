@@ -11,16 +11,18 @@ export type SuperButtonType = DefaultButtonPropsType & {
 }
 
 export const SuperButton: React.FC<SuperButtonType> = (
-    {name, callback, classVariant, isDisabled, ...props}
-) => {
-    const callbackHandler = () => {
-        callback()
+    {
+        name,
+        callback,
+        classVariant,
+        isDisabled,
+        ...props
     }
-
+) => {
     return (
         <div>
             <Button
-                onClick={callbackHandler}
+                onClick={()=>callback()}
                 variant={classVariant}
                 size="large"
                 disabled={isDisabled}>

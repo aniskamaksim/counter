@@ -1,54 +1,52 @@
 import React, {ChangeEvent, useState} from 'react';
 import {SuperButton} from "./SuperButton";
 import TextField from "@mui/material/TextField";
+import {useDispatch} from "react-redux";
+import {minValueAC} from "../State/minValue-reducer";
+import {maxValueAC} from "../State/maxValue-reducer";
+import {ResetCounterAC} from "../State/counter-reduser";
 
 type SettingsType = {
-    changeMaxValue: (text: number) => void;
-    changeMinValue: (text: number) => void;
-    resetCounter: () => void;
-    maxvalue: number;
-    minvalue: number;
-    setLocalStorage: () => void;
+    maxValue: number;
+    minValue: number;
 }
 
 export const Settings: React.FC<SettingsType> = (
-    {maxvalue, minvalue, changeMaxValue, changeMinValue, resetCounter, setLocalStorage}
+    {maxValue, minValue}
 ) => {
-
+    const dispatch = useDispatch();
     const [error, setError] = useState<string | null>(null)
     const errorString = "Enter correct value"
-    const changeMinEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        minvalue = Number(event.currentTarget.value)
-        if (minvalue > 0 && minvalue < maxvalue) {
-            changeMinValue(minvalue);
-            setError(null)
+    const changeMinCounterHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        const newMinValue = Number(event.currentTarget.value);
+        if (newMinValue > 0 && newMinValue < maxValue) {
+            dispatch(minValueAC(newMinValue));
+            setError(null);
         } else {
             setError(errorString);
         }
     }
-    const changeMaxEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        maxvalue = Number(event.currentTarget.value)
-        if (maxvalue > 0 && maxvalue > minvalue) {
-            changeMaxValue(maxvalue)
-            setError(null)
+    const changeMaxCounterHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        const newMaxValue = Number(event.currentTarget.value);
+        if (newMaxValue > 0 && newMaxValue > minValue) {
+            dispatch(maxValueAC(newMaxValue));
+            setError(null);
         } else {
             setError(errorString);
         }
     }
-    const onClickHandler = () => {
-        setLocalStorage();
-        resetCounter();
-        setError(null)
+    const SetCounterOnClickHandler = () => {
+        dispatch(ResetCounterAC(minValue));
+        setError(null);
     }
-
-    const buttonDisabled = !!error
+    const buttonDisabled = !!error;
     return (
         <div>
             <div>
                 <TextField
                     type={'number'}
-                    value={minvalue}
-                    onChange={changeMinEventHandler}
+                    value={minValue}
+                    onChange={changeMinCounterHandler}
                     size={'small'}
                     variant={'standard'}
                 />
@@ -59,8 +57,8 @@ export const Settings: React.FC<SettingsType> = (
             <div>
                 <TextField
                     type={'number'}
-                    value={maxvalue}
-                    onChange={changeMaxEventHandler}
+                    value={maxValue}
+                    onChange={changeMaxCounterHandler}
                     size={'small'}
                     variant={'standard'}
                 />
@@ -68,7 +66,7 @@ export const Settings: React.FC<SettingsType> = (
             <SuperButton
                 name={'Set Values'}
                 classVariant={'outlined'}
-                callback={onClickHandler}
+                callback={SetCounterOnClickHandler}
                 isDisabled={buttonDisabled}
             />
         </div>
