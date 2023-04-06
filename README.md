@@ -2,6 +2,8 @@
 
 ## React-Redux / Redux / TypeSript
 
+link to deploy: https://aniskamaksim.github.io/counter/
+
 ***screenshot:***
 
 ![Снимок экрана (436)](https://user-images.githubusercontent.com/106627293/230381118-211586f4-59ba-466a-9f21-1f1183563695.png)
